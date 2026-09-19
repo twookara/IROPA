@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="IROPA">
+  <title>IROPA</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header>
+  <div class="tools">
+
+    <!-- カラーパレット作成 -->
+    <div class="tool">
+      <button class="tool-toggle" id="palette-toggle">
+        カラーパレット作成
+      </button>
+
+      <div class="tool-content" id="palette-tool">
+
+        <div id="custom-palette">
+          <p class="empty-message">
+            下の色見本から色を選択してください
+          </p>
+        </div>
+
+        <div class="palette-actions">
+          <button id="palette-copy">
+            パレットをコピー
+          </button>
+
+          <button id="palette-clear">
+            パレットをクリア
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <!-- UIサンプル -->
+    <div class="tool">
+      <button class="tool-toggle" id="ui-toggle">
+        UIサンプル
+      </button>
+
+      <div class="tool-content" id="ui-tool">
+
+        <div class="ui-controls">
+
+          <div class="ui-control">
+            <span>header</span>
+
+            <span class="ui-setting">
+              背景
+              <button
+                class="ui-color-button"
+                data-target="sample-header"
+                data-property="background">
+              </button>
+            </span>
+
+            <span class="ui-setting">
+              文字
+              <button
+                class="ui-color-button"
+                data-target="sample-header"
+                data-property="color">
+              </button>
+            </span>
+          </div>
+
+          <div class="ui-control">
+            <span>main</span>
+
+            <span class="ui-setting">
+              背景
+              <button
+                class="ui-color-button"
+                data-target="sample-main"
+                data-property="background">
+              </button>
+            </span>
+
+            <span class="ui-setting">
+              文字
+              <button
+                class="ui-color-button"
+                data-target="sample-main"
+                data-property="color">
+              </button>
+            </span>
+          </div>
+
+          <div class="ui-control">
+            <span>section</span>
+
+            <span class="ui-setting">
+              背景
+              <button
+                class="ui-color-button"
+                data-target="sample-section"
+                data-property="background">
+              </button>
+            </span>
+
+            <span class="ui-setting">
+              文字
+              <button
+                class="ui-color-button"
+                data-target="sample-section"
+                data-property="color">
+              </button>
+            </span>
+          </div>
+
+          <div class="ui-control">
+            <span>article</span>
+
+            <span class="ui-setting">
+              背景
+              <button
+                class="ui-color-button"
+                data-target="sample-article"
+                data-property="background">
+              </button>
+            </span>
+
+            <span class="ui-setting">
+              文字
+              <button
+                class="ui-color-button"
+                data-target="sample-article"
+                data-property="color">
+              </button>
+            </span>
+          </div>
+
+          <div class="ui-control">
+            <span>footer</span>
+
+            <span class="ui-setting">
+              背景
+              <button
+                class="ui-color-button"
+                data-target="sample-footer"
+                data-property="background">
+              </button>
+            </span>
+
+            <span class="ui-setting">
+              文字
+              <button
+                class="ui-color-button"
+                data-target="sample-footer"
+                data-property="color">
+              </button>
+            </span>
+          </div>
+
+        </div>
+
+        <button id="ui-reset">
+          初期配色に戻す
+        </button>
+
+        <!-- UIプレビュー -->
+        <div id="ui-sample">
+
+          <header id="sample-header">
+            <h2>Sample Website</h2>
+            <p>シンプルなUIカラープレビュー</p>
+          </header>
+
+          <main id="sample-main">
+
+            <section id="sample-section">
+              <h2>今日のトピック</h2>
+              <p>
+                配色による見え方の違いを確認するための
+                サンプルコンテンツです。
+              </p>
+
+              <article id="sample-article">
+                <h3>おすすめの記事</h3>
+                <p>
+                  背景色と文字色を変更しながら、
+                  読みやすさや全体の雰囲気を確認できます。
+                </p>
+              </article>
+
+            </section>
+
+          </main>
+
+          <footer id="sample-footer">
+            <p>© Sample Website</p>
+          </footer>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- ===== 色系統ナビ ===== -->
+
+  <nav class="color-nav">
+    <a href="#red">赤</a>
+    <a href="#orange">橙</a>
+    <a href="#yellow">黄</a>
+    <a href="#yellow-green">黄緑</a>
+    <a href="#green">緑</a>
+    <a href="#blue-green">青緑</a>
+    <a href="#sky">空</a>
+    <a href="#blue">青</a>
+    <a href="#purple">紫</a>
+    <a href="#red-purple">赤紫</a>
+    <a href="#pink">桃</a>
+    <a href="#white">白</a>
+    <a href="#black">黒</a>
+    <a href="#gray">灰</a>
+    <a href="#brown">茶</a>
+  </nav>
+</header>
+  <section id="red">
+    <h1>赤・臙脂系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#E34234">
+        <h2>朱赤</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#C6283D">
+        <h2>深紅</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#9E3045">
+        <h2>臙脂</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#7B2942">
+        <h2>ワイン</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#693C45">
+        <h2>小豆色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#FF0000">
+        <h2>赤</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="orange">
+    <h1>橙色系</h1>
+    <div class="palette">
+      <div class="color-box light" data-hex="#FF922B">
+        <h2>明るい橙</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#F57C00">
+        <h2>橙色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#E66A2C">
+        <h2>柿色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#C75B25">
+        <h2>焼橙</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#A95820">
+        <h2>琥珀茶</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#FF8000">
+        <h2>オレンジ</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="yellow">
+    <h1>山吹・黄色系</h1>
+    <div class="palette">
+      <div class="color-box light" data-hex="#FFCA28">
+        <h2>蜜柑黄</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#F8B500">
+        <h2>山吹色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#D99A00">
+        <h2>黄金色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#C5A028">
+        <h2>芥子色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#B28A32">
+        <h2>黄土色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#FFFF00">
+        <h2>黄</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="yellow-green">
+    <h1>鶯・黄緑系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#8FAF38">
+        <h2>若草色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#718C32">
+        <h2>苔色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#918D40">
+        <h2>鶯色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#77752D">
+        <h2>オリーブ</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#5F6535">
+        <h2>海松色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#80FF00">
+        <h2>ライム</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="green">
+    <h1>緑系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#00A86B">
+        <h2>翡翠色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#007B43">
+        <h2>常磐色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#286044">
+        <h2>深緑</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#3F5D45">
+        <h2>松葉色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#354A3B">
+        <h2>墨緑</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#00FF00">
+        <h2>緑</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="blue-green">
+    <h1>青緑系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#00A6A6">
+        <h2>ターコイズ</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#008C8C">
+        <h2>青緑</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#007A78">
+        <h2>ティール</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#00666B">
+        <h2>深青緑</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#345B5E">
+        <h2>鉄色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#00FFFF">
+        <h2>シアン</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="sky">
+    <h1>空色系</h1>
+    <div class="palette">
+      <div class="color-box light" data-hex="#87CEEB">
+        <h2>淡空色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#55BDEB">
+        <h2>空色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#38A9E0">
+        <h2>スカイブルー</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#258DC2">
+        <h2>深空色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#1677A8">
+        <h2>青空色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#00BFFF">
+        <h2>純空色</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="blue">
+    <h1>群青・青系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#2455C3">
+        <h2>瑠璃色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#3155A6">
+        <h2>群青色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#2450A4">
+        <h2>コバルト</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#253B80">
+        <h2>紺青</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#29465B">
+        <h2>藍色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#0000FF">
+        <h2>青</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="purple">
+    <h1>紫系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#7656A8">
+        <h2>菫色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#68478D">
+        <h2>江戸紫</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#743F68">
+        <h2>葡萄色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#50375F">
+        <h2>深紫</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#514A9D">
+        <h2>青紫</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#8000FF">
+        <h2>紫</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="red-purple">
+    <h1>赤紫系</h1>
+      <div class="palette">
+      <div class="color-box dark" data-hex="#B13A6F">
+        <h2>紅紫</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#C23B68">
+        <h2>ラズベリー</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#9C416D">
+        <h2>ローズパープル</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#813A5D">
+        <h2>葡萄紅</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#672F52">
+        <h2>深赤紫</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#FF00FF">
+        <h2>マゼンタ</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="pink">
+    <h1>桃色系</h1>
+    <div class="palette">
+      <div class="color-box light" data-hex="#F28CA6">
+        <h2>桜桃色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#F47F87">
+        <h2>珊瑚桃</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#DC5A7D">
+        <h2>ローズピンク</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#B86578">
+        <h2>ダスティピンク</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#A63D63">
+        <h2>深桃色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#FF80BF">
+        <h2>ピンク</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="white">
+    <h1>白系</h1>
+    <div class="palette">
+
+      <div class="color-box light" data-hex="#FFF8E7">
+        <h2>アイボリー</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#F5EAD7">
+        <h2>生成色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#E8E2D8">
+        <h2>真珠色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#DCDDD8">
+        <h2>灰白色</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#D3D3CB">
+        <h2>白鼠</h2>
+      </div>
+
+      <div class="color-box light" data-hex="#FFFFFF">
+        <h2>純白</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="black">
+    <h1>黒系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#272727">
+        <h2>墨色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#111111">
+        <h2>漆黒</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#20262C">
+        <h2>青墨</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#29242E">
+        <h2>紫黒</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#302825">
+        <h2>黒茶</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#000000">
+        <h2>純黒</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="gray">
+    <h1>灰色系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#A6A6A6">
+        <h2>銀鼠</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#858585">
+        <h2>鈍色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#686868">
+        <h2>鼠色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#51565B">
+        <h2>鉛色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#3D3D3D">
+        <h2>消炭色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#808080">
+        <h2>灰色</h2>
+      </div>
+    </div>
+  </section>
+
+  <section id="brown">
+    <h1>茶色系</h1>
+    <div class="palette">
+      <div class="color-box dark" data-hex="#C58A52">
+        <h2>キャメル</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#A75D45">
+        <h2>赤茶</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#82533B">
+        <h2>栗色</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#63483C">
+        <h2>焦茶</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#45352F">
+        <h2>濃茶</h2>
+      </div>
+
+      <div class="color-box dark" data-hex="#804000">
+        <h2>茶色</h2>
+      </div>
+    </div>
+  </section>
+  <!-- ===== カラーピッカー ===== -->
+
+  <section class="custom-color-picker-section">
+
+    <h1>カラーピッカー</h1>
+
+    <div class="custom-color-picker">
+
+      <input
+        type="color"
+        id="custom-color-picker"
+        value="#808080"
+      >
+
+      <button id="custom-color-hex">
+        #808080
+      </button>
+
+    </div>
+
+  </section>
+  <div id="color-picker-overlay">
+
+    <div id="color-picker-panel">
+
+      <div class="color-picker-header">
+        <h2>色を選択</h2>
+        <button id="color-picker-close">×</button>
+      </div>
+
+      <div id="color-picker-list">
+      </div>
+
+    </div>
+
+  </div>
+  <!-- ===== 色詳細 ===== -->
+
+  <div id="color-detail-overlay">
+
+    <div id="color-detail-panel">
+
+      <div class="color-detail-header">
+        <h2 id="detail-name"></h2>
+
+        <button id="color-detail-close">
+          ×
+        </button>
+      </div>
+
+      <div id="detail-preview">
+      </div>
+
+      <div class="color-detail-data">
+
+        <div class="detail-row">
+          <span>HEX</span>
+
+          <button id="detail-hex">
+          </button>
+        </div>
+
+        <div class="detail-row">
+          <span>RGB</span>
+
+          <button id="detail-rgb" class="detail-copy">
+          </button>
+        </div>
+
+        <div class="detail-row">
+          <span>HSL</span>
+
+          <button id="detail-hsl" class="detail-copy">
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

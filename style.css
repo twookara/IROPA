@@ -1,0 +1,718 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 30px 15px;
+  background-color: #F5F5F5;
+  font-family: sans-serif;
+  color: #333333;
+}
+
+section {
+  max-width: 700px;
+  margin: 0 auto 10px;
+}
+
+h1 {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+
+/* ===== パレット配置 ===== */
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+/* ===== ボックス共通 ===== */
+
+.color-box {
+  grid-column: span 2;
+  min-height: 120px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+
+  text-align: center;
+}
+
+.color-box h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+
+/* 明るい背景 */
+
+.light {
+  color: #333333;
+}
+
+
+/* 暗い背景 */
+
+.dark {
+  color: #FFFFFF;
+}
+
+
+/* ===== コピー通知 ===== */
+
+.copy-message {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+
+  transform: translateX(-50%);
+
+  padding: 10px 16px;
+
+  background-color: #272727;
+  color: #FFFFFF;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  z-index: 3000;
+}
+
+
+/* ===== ツール共通 ===== */
+
+.tools {
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.tool {
+  margin-bottom: 12px;
+}
+
+.tool-toggle {
+  width: 100%;
+
+  padding: 15px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: #333333;
+  color: #FFFFFF;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.tool-content {
+  display: none;
+
+  margin-top: 10px;
+  padding: 15px;
+
+  background-color: #FFFFFF;
+
+  border-radius: 10px;
+}
+
+.tool-content.open {
+  display: block;
+}
+/* ===== 色系統ナビ ===== */
+
+.color-nav {
+  max-width: 700px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin: 0 auto 30px;
+}
+
+.color-nav a {
+  min-width: 42px;
+
+  padding: 8px 10px;
+
+  background-color: #FFFFFF;
+  color: #333333;
+
+  border-radius: 8px;
+
+  text-align: center;
+  text-decoration: underline;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+/* ===== カラーパレット作成 ===== */
+
+.palette-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+
+  margin-bottom: 12px;
+}
+
+#palette-copy,
+#palette-clear {
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #EAEAEA;
+  color: #333333;
+
+  cursor: pointer;
+}
+
+
+/* 作成されたパレット */
+
+#custom-palette {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  min-height: 100px;
+  margin-bottom: 12px;
+
+  border-radius: 10px;
+  overflow: hidden;
+
+  background-color: #EAEAEA;
+}
+
+.palette-item {
+  min-height: 90px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  text-align: center;
+}
+
+.palette-item strong {
+  font-size: 14px;
+}
+
+.palette-item span {
+  font-size: 12px;
+}
+
+
+/* 未選択時 */
+
+.empty-message {
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  margin: 0;
+
+  text-align: center;
+
+  color: #666666;
+}
+
+
+/* ===== パレット色選択中 ===== */
+
+body.palette-selecting .color-box {
+  cursor: pointer;
+}
+
+.color-box.selected {
+  outline: 4px solid #333333;
+  outline-offset: 3px;
+}
+
+
+/* ===== UIコントロール ===== */
+
+.ui-controls {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+
+.ui-control {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+
+  gap: 20px;
+  padding: 10px;
+
+  background-color: #F5F5F5;
+
+  border-radius: 8px;
+}
+
+.ui-control > span:first-child {
+  font-weight: bold;
+}
+
+.ui-setting {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 13px;
+}
+
+
+/* UI色選択ボタン */
+
+.ui-color-button {
+  width: 36px;
+  height: 36px;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+
+  outline: 1px solid #BBBBBB;
+
+  background-color: #333333;
+
+  cursor: pointer;
+}
+
+
+/* ===== UI色選択画面 ===== */
+
+#color-picker-overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  padding: 20px;
+
+  background-color: rgba(0, 0, 0, 0.45);
+
+  z-index: 2000;
+}
+
+#color-picker-overlay.open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 色選択パネル */
+
+#color-picker-panel {
+  width: 100%;
+  max-width: 650px;
+  max-height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px;
+
+  background-color: #F5F5F5;
+
+  border-radius: 15px;
+}
+
+
+/* 色選択パネル上部 */
+
+.color-picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.color-picker-header h2 {
+  margin: 0;
+
+  color: #333333;
+
+  font-size: 20px;
+}
+
+#color-picker-close {
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #E0E0E0;
+  color: #333333;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+
+/* 色一覧 */
+
+#color-picker-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 8px;
+
+  overflow-y: auto;
+}
+
+.picker-color {
+  min-height: 75px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 4px;
+  padding: 8px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.picker-color strong {
+  font-size: 13px;
+}
+
+.picker-color span {
+  font-size: 11px;
+}
+
+
+#ui-reset {
+  width: 100%;
+
+  padding: 12px;
+  margin-bottom: 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #EAEAEA;
+  color: #333333;
+
+  cursor: pointer;
+}
+
+
+/* ===== UIサンプル本体 ===== */
+
+#ui-sample {
+  overflow: hidden;
+
+  border: 1px solid #CCCCCC;
+  border-radius: 12px;
+}
+
+#sample-header {
+  padding: 20px;
+
+  background-color: #3155A6;
+  color: #FFFFFF;
+}
+
+#sample-header h2 {
+  margin-top: 0;
+}
+
+#sample-main {
+  padding: 20px;
+
+  background-color: #F5F5F5;
+  color: #333333;
+}
+
+#sample-section {
+  padding: 20px;
+
+  background-color: #FFFFFF;
+  color: #333333;
+
+  border-radius: 10px;
+}
+
+#sample-section h2 {
+  margin-top: 0;
+}
+
+#sample-article {
+  padding: 15px;
+  margin-top: 15px;
+
+  background-color: #EAEAEA;
+  color: #333333;
+
+  border-radius: 8px;
+}
+
+#sample-article h3 {
+  margin-top: 0;
+}
+
+#sample-footer {
+  padding: 15px;
+
+  background-color: #272727;
+  color: #FFFFFF;
+
+  text-align: center;
+}
+
+
+/* ===== 色詳細 ===== */
+
+#color-detail-overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  padding: 20px;
+
+  background-color: rgba(0, 0, 0, 0.45);
+
+  z-index: 2100;
+}
+
+#color-detail-overlay.open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 詳細パネル */
+
+#color-detail-panel {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 20px;
+
+  background-color: #FFFFFF;
+
+  border-radius: 15px;
+}
+
+
+/* 詳細上部 */
+
+.color-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.color-detail-header h2 {
+  margin: 0;
+
+  color: #333333;
+}
+
+#color-detail-close {
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #EAEAEA;
+  color: #333333;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+
+/* 色プレビュー */
+
+#detail-preview {
+  width: 100%;
+  height: 120px;
+
+  margin-bottom: 20px;
+
+  border-radius: 10px;
+}
+
+
+/* 色データ */
+
+.color-detail-data {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  min-height: 45px;
+
+  padding: 0 12px;
+
+  background-color: #F5F5F5;
+  color: #333333;
+
+  border-radius: 8px;
+}
+
+.detail-row > span {
+  font-weight: bold;
+}
+
+
+/* 色データのコピーボタン */
+
+#detail-hex,
+.detail-copy {
+  padding: 8px 12px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: #E0E0E0;
+  color: #333333;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+/* ===== 各色系統の開閉 ===== */
+
+body > section[id] > h1 {
+  position: relative;
+
+  width: 100%;
+
+  box-sizing: border-box;
+  padding-right: 34px;
+  padding-left: 34px;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+body > section[id] > h1::after {
+  content: "▼";
+
+  position: absolute;
+  right: 8px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-size: 14px;
+}
+
+body > section[id].closed > h1::after {
+  content: "▶︎";
+}
+
+body > section[id].closed > .palette {
+  display: none;
+}
+/* ===== カラーピッカー ===== */
+
+.custom-color-picker-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.custom-color-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 20px;
+
+  background-color: #FFFFFF;
+
+  border-radius: 12px;
+}
+#custom-color-picker {
+  width: 80px;
+  height: 60px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  background: none;
+
+  cursor: pointer;
+}
+#custom-color-hex {
+  min-width: 120px;
+
+  padding: 14px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #EAEAEA;
+  color: #333333;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
